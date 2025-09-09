@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Happy Birthday Tankhu 🎉</title>
   <style>
-    /* ... (your existing CSS code) ... */
+    /* Import Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&display=swap');
 
     * {
@@ -28,12 +28,14 @@
       overflow: hidden;
     }
 
+    /* Gradient Animation */
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
+    /* Title */
     h1 {
       font-size: 4em;
       text-align: center;
@@ -47,6 +49,7 @@
       to { text-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff; }
     }
 
+    /* Sparkles */
     .sparkle {
       position: absolute;
       width: 5px;
@@ -62,6 +65,7 @@
       100% { opacity: 0; transform: scale(0.5); }
     }
 
+    /* Balloons */
     .balloon {
       position: absolute;
       bottom: -100px;
@@ -77,6 +81,7 @@
       100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
     }
 
+    /* Surprise Button */
     .surprise-btn {
       margin-top: 20px;
       padding: 15px 30px;
@@ -95,22 +100,24 @@
       transform: scale(1.1);
     }
 
+    /* Hidden Surprise Photo and Video */
     .photo-container {
       margin-top: 20px;
       display: none;
       animation: fadeIn 2s ease forwards;
-      display: flex; /* Added to arrange items side-by-side or stacked */
-      flex-direction: column; /* Stacks items vertically */
-      align-items: center; /* Centers items */
+      /* Add display flex to arrange the items */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; /* Adds space between the photo and video */
     }
 
     .photo-container img,
-    .photo-container video { /* Added video to this selector */
+    .photo-container video {
       width: 300px;
       border-radius: 20px;
       box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ff00ff;
       animation: glowBorder 2s infinite alternate;
-      margin-top: 20px; /* Adds space between the photo and video */
     }
 
     @keyframes glowBorder {
@@ -130,10 +137,10 @@
 
   <button class="surprise-btn" onclick="showSurprise()">Click for Surprise 💝</button>
 
-  <div class="photo-container" id="photoContainer">
+  <div class="photo-container" id="photoContainer" style="display: none;">
     <img src="t.png" alt="Surprise Photo">
     
-    <video id="surpriseVideo" width="300" muted playsinline>
+    <video id="surpriseVideo" width="300" muted playsinline controls>
       <source src="tv.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -160,13 +167,14 @@
       document.body.appendChild(balloon);
     }
 
-    // Show Surprise Photo and Play Video
+    // Function to show both the image and the video
     function showSurprise() {
-      // Show the photo and video container
-      document.getElementById("photoContainer").style.display = "flex";
-
-      // Find the video element
+      // Find the container and video element
+      const photoContainer = document.getElementById("photoContainer");
       const video = document.getElementById("surpriseVideo");
+      
+      // Make the container visible
+      photoContainer.style.display = "flex";
       
       // Play the video
       if (video) {
